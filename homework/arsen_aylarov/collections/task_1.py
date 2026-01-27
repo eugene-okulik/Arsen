@@ -8,8 +8,7 @@ my_dict['list'].pop(1)
 print(my_dict['list'])
 
 my_dict['dict'].pop('a')
-per1 =('i am a tuple',)
-my_dict['dict'][per1] = 22
+my_dict['dict'][('i am a tuple',)] = 22
 print(my_dict['dict'])
 
 my_dict['set'].add(2.25)
