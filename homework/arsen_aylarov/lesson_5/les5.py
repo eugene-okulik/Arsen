@@ -10,7 +10,7 @@ c = res1.split()
 d = int((a[-1]))
 e = int((b[-1]))
 f = int((c[-1]))
-print(d + 10, e + 10, f + 10 )
+print(d + 10, e + 10, f + 10)
 
 
 students = ['Ivanov', 'Petrov', 'Sidorov']
