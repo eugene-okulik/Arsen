@@ -9,7 +9,6 @@ b = int(res2.split()[-1])
 c = int(res1.split()[-1])
 print(a + 10, b + 10, c + 10)
 
-
 students = ['Ivanov', 'Petrov', 'Sidorov']
 subjects = ['math', 'biology', 'geography']
-print('Students', ' '.join(students), 'study these subjects:', ' '.join(subjects) )
+print('Students', ' '.join(students), 'study these subjects:', ' '.join(subjects))
