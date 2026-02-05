@@ -1,13 +1,16 @@
 person = ['John', 'Doe', 'New York', '+1372829383739', 'US']
 name, last_name, city, phone, country = person
 
-res1 = 'результат операции: 42'
-res2 = 'результат операции: 514'
-res3 = 'результат работы программы: 9'
-a = int(res3.split()[-1])
-b = int(res2.split()[-1])
-c = int(res1.split()[-1])
-print(a + 10, b + 10, c + 10)
+text1 = 'результат операции: 42'
+text2 = 'результат операции: 514'
+text3 = 'результат работы программы: 9'
+txt1_ind = text1.index(':')
+txt1 = int(text1[txt1_ind + 1:])
+txt2_ind = text2.index(':')
+txt2 = int(text2[txt2_ind + 1:])
+txt3_ind = text3.index(':')
+txt3 = int(text3[txt3_ind + 1:])
+print(txt1 + 10, txt2 + 10, txt3 + 10)
 
 students = ['Ivanov', 'Petrov', 'Sidorov']
 subjects = ['math', 'biology', 'geography']
