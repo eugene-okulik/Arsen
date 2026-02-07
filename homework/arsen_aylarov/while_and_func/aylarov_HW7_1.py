@@ -3,7 +3,7 @@ import random
 
 i = random.randrange(1, 4)
 
-while i :
+while i:
     numb = int(input('enter a number :'))
     if i == numb:
         break
