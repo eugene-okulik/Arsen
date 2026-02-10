@@ -4,8 +4,8 @@ def fib():
         yield a
         a, b = b, a + b
 
-fibo = fib()
 
+fibo = fib()
 count = 1
 
 while count < 100001:
