@@ -5,9 +5,9 @@ hot_day = []
 cold_day = []
 days = []
 for temp in hot_days:
-    if temp >= 32 :
+    if temp >= 32:
         hot_day.append(temp)
-    elif temp <= 31 and temp >= 30 :
+    elif temp <= 31 and temp >= 30:
         days.append(temp)
     else:
         cold_day.append(temp)
