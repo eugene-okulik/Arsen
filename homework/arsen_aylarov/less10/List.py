@@ -3,4 +3,3 @@ nwe_list = prise_list.split(', ')
 my_dict = {items.split()[0]: int(items.split()[1].strip('р')) for items in nwe_list}
 
 print(my_dict)
-

@@ -20,4 +20,3 @@ def ori(a, b):
 a = int(input('input first number: '))
 b = int(input('input second number: '))
 print(ori(a, b))
-

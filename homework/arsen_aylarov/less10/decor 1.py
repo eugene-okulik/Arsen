@@ -11,4 +11,3 @@ def printer():
     print('other line')
 
 printer()
-
