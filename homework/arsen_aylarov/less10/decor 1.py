@@ -6,8 +6,10 @@ def fin(func):
         print('finished')
     return inner
 
+
 @fin
 def printer():
     print('other line')
+
 
 printer()

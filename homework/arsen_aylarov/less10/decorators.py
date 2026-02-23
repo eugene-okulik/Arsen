@@ -10,4 +10,5 @@ def decor(func):
 def ll():
     print("hello")
 
+
 ll(4)
