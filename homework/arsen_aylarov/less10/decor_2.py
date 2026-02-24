@@ -1,21 +1,28 @@
 def orifmetic(num):
 
     def wrapper(*args):
-        first_num, second_num = num(*args)
+        first_num, second_num = args
         if first_num == second_num:
-            return first_num + second_num
+            return num(first_num, second_num, '+')
         elif first_num or second_num < 0:
-            return first_num * second_num
+            return  num(first_num, second_num, '*')
         elif first_num > second_num:
-            return first_num - second_num
+            return  num(first_num, second_num, '-')
         elif first_num < second_num:
-            return first_num / second_num
+            return  num(first_num, second_num, '/')
     return wrapper
 
 
 @orifmetic
-def ori(a, b):
-    return a, b
+def ori(first, second, operation):
+    if operation == '+':
+        return first + second
+    elif operation == '-':
+        return first - second
+    elif operation == '*':
+        return first * second
+    elif operation == '/':
+        return first / second
 
 
 a = int(input('input first number: '))

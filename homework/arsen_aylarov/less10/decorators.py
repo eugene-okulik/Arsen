@@ -1,7 +1,7 @@
 def decor(func):
 
     def wrapper(fin):
-        for i in range(fin):
+        for _ in range(fin):
             func()
     return wrapper
 
