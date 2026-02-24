@@ -5,11 +5,11 @@ def orifmetic(num):
         if first_num == second_num:
             return num(first_num, second_num, '+')
         elif first_num or second_num < 0:
-            return  num(first_num, second_num, '*')
+            return num(first_num, second_num, '*')
         elif first_num > second_num:
-            return  num(first_num, second_num, '-')
+            return num(first_num, second_num, '-')
         elif first_num < second_num:
-            return  num(first_num, second_num, '/')
+            return num(first_num, second_num, '/')
     return wrapper
 
 
