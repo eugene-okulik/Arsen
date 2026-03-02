@@ -31,7 +31,7 @@ prince = Book('Prince', 'N. Machiavelli',
 the_green_mill = Book('The Green mill', 'S. King',
                       '315', '415-980-325', False)
 history = School('History', 'E. Panosenkop', 250, '909-202-400', False,
-              'History of World', '5-7', 'на дом')
+                 'History of World', '5-7', 'на дом')
 algebra = School('Algebra', 'R. Zaitsman', 231, '221-413-304', False,
                  'Algebra', '7', 'на дом')
 geografy = School('Geografy', 'F. Konuhov', 180, b'180-800-365', True,
