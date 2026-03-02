@@ -23,21 +23,20 @@ class School(Book):
 harry_potter = Book('Harry Potter', 'J. Roulin',
                     435, '743-123-112', False)
 animal_farm = Book('Animal Farm', 'J. Oruel',
-                   356 , '771-413-312', False)
+                   356, '771-413-312', False)
 a_n_w = Book('Amaizing new world', 'O. Haksli',
-             402 , '664-451-222', False)
+             402, '664-451-222', False)
 prince = Book('Prince', 'N. Machiavelli',
               213, '888-124-722', True)
 the_green_mill = Book('The Green mill', 'S. King',
                       '315', '415-980-325', False)
-
 history = School('History', 'E. Panosenkop', 250, '909-202-400', False,
               'History of World', '5-7', 'на дом')
 algebra = School('Algebra', 'R. Zaitsman', 231, '221-413-304', False,
                  'Algebra', '7', 'на дом')
-geografy = School('Geografy', 'F. Konuhov', 180,'180-800-365', True,
+geografy = School('Geografy', 'F. Konuhov', 180, b'180-800-365', True,
                   'Geografy', '5-7', 'на дом')
-music = School('Music', 'A.vanBuren', '104' ,'104_015-202' , False,
+music = School('Music', 'A.vanBuren', '104', '104_015-202', False,
                'music_theory', '5-9', 'нет заданий')
 
 
