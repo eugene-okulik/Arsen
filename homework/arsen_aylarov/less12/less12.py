@@ -40,24 +40,24 @@ class Buqet:
         total = 0
         for x in self.buket:
             total += x.time_of_life
-        average  = total / len(self.buket)
+        average = total / len(self.buket)
         return print(f'среднее время жизни букета : {int(average)} дней')
 
     def price(self):
-        price = sorted(self.buket, key = lambda x: x.price)
+        price = sorted(self.buket, key=lambda x: x.price)
         return [f"{x.variety}: {x.price} руб." for x in price]
 
     def stems_len(self):
-        stens = sorted(self.buket, key = lambda x: x.stem_len)
-        return  [f"{x.variety}: {x.stem_len} см." for x in stens]
+        stens = sorted(self.buket, key=lambda x: x.stem_len)
+        return [f"{x.variety}: {x.stem_len} см." for x in stens]
 
     def flower_color(self):
-        f_color = sorted(self.buket, key = lambda x: x.color)
-        return  [f"{x.variety}: {x.color} цвет" for x in f_color]
+        f_color = sorted(self.buket, key=lambda x: x.color)
+        return [f"{x.variety}: {x.color} цвет" for x in f_color]
 
     def choose(self, choice):
         if choice == 'время':
-            return  self.buket()
+            return self.buket()
         if choice == 'цена':
             return self.price()
         if choice == 'длинна':
