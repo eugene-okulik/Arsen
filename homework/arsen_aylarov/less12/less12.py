@@ -9,10 +9,11 @@ class Flower:
         self.variety = variety
 
     def __repr__(self):
-        return f'{self.variety}' #{self.color}, {self.price}, {self.stem_len}]'
+        return f'{self.variety}'
 
     def __str__(self):
         return self.__repr__()
+
 
 class Roses(Flower):
     def __init__(self, flower, petals, price, time_of_life, stem_len, color, variety, thorns):
@@ -20,18 +21,10 @@ class Roses(Flower):
         self.thorns = thorns
 
 
-
 class Pions(Flower):
     def __init__(self, flower, petals, price, time_of_life, stem_len, color, variety, gibrid ):
         super().__init__(flower, petals, price, time_of_life, stem_len, color, variety)
         self.gibrid = gibrid
-
-
-
-
-
-
-
 
 
 rose = Roses(True, True, 120, 10, 80, 'Red',
@@ -57,15 +50,13 @@ class Buqet:
     def price(self):
         return sorted(self.buket, key=lambda x: x.price)
 
-
     def stems_len(self):
         return sorted(self.buket, key=lambda x: x.stem_len)
-
 
     def flower_color(self):
         return  sorted(self.buket, key=lambda x: x.color)
 
-    def find_flower(self, s_len=None, colors=None, min_price=None ):
+    def find_flower(self, s_len=None, colors=None, min_price=None):
         result = []
         for flower in self.buket:
             if (colors is None or flower.color == colors) and (min_price is None or flower.price <= min_price) \
@@ -73,6 +64,6 @@ class Buqet:
                 result.append(flower)
         return result
 
-my_buqet = Buqet(buket)
 
+my_buqet = Buqet(buket)
 print(my_buqet.find_flower(colors='Red'))
