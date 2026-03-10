@@ -22,7 +22,7 @@ class Roses(Flower):
 
 
 class Pions(Flower):
-    def __init__(self, flower, petals, price, time_of_life, stem_len, color, variety, gibrid ):
+    def __init__(self, flower, petals, price, time_of_life, stem_len, color, variety, gibrid):
         super().__init__(flower, petals, price, time_of_life, stem_len, color, variety)
         self.gibrid = gibrid
 
@@ -54,13 +54,16 @@ class Buqet:
         return sorted(self.buket, key=lambda x: x.stem_len)
 
     def flower_color(self):
-        return  sorted(self.buket, key=lambda x: x.color)
+        return sorted(self.buket, key=lambda x: x.color)
 
     def find_flower(self, s_len=None, colors=None, min_price=None):
         result = []
         for flower in self.buket:
-            if (colors is None or flower.color == colors) and (min_price is None or flower.price <= min_price) \
-                and (s_len is None or flower.stem_len <= s_len):
+            if (
+                (colors is None or flower.color == colors)
+                and (min_price is None or flower.price <= min_price)
+                and (s_len is None or flower.stem_len <= s_len)
+            ):
                 result.append(flower)
         return result
 
