@@ -6,7 +6,7 @@ import datetime
 fail_path = os.path.dirname(os.path.abspath(__file__))
 up_path = os.path.join(fail_path, '..', '..')
 file_path = os.path.normpath(os.path.join(up_path, 'eugene_okulik', 'hw_13', 'data.txt'))
-nwe_file_path = os.path.normpath(os.path.join(up_path, 'eugene_okulik', 'hw_13', 'data2.txt'))
+nwe_file_path = os.path.normpath(os.path.join(up_path, 'eugene_okulik', 'hw_13','data2.txt'))
 
 
 def riad_file():
