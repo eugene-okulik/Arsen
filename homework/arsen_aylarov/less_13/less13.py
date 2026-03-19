@@ -24,11 +24,10 @@ with open('data2.txt', 'a') as nwe_file:
             result = data_line + datetime.timedelta(days=7)
             nwe_file.write(f"{data_line}: {result}\n")
         elif i == 2:
-            result = data_line.strftime('%A')  # День недели
+            result = data_line.strftime('%A')  # День 
             nwe_file.write(f"{data_line}: {result}\n")
         elif i == 3:
             result = (datetime.datetime.now() - data_line).days
             nwe_file.write(f"{data_line}: {result}\n")
     clean_line = data_line.strftime("%Y-%m-%d %H:%M:%S.%f")
     nwe_file.write(clean_line + "\n")
-    
