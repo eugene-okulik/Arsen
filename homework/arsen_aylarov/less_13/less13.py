@@ -31,3 +31,4 @@ with open('data2.txt', 'a') as nwe_file:
             nwe_file.write(f"{data_line}: {result}\n")
     clean_line = data_line.strftime("%Y-%m-%d %H:%M:%S.%f")
     nwe_file.write(clean_line + "\n")
+    
