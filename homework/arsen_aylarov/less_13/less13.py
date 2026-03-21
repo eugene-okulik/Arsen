@@ -15,8 +15,9 @@ def riad_file():
             mach = re.search(r'\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d{6}', line)
             if mach:
                 data_str = mach.group(0)
-                date_object = datetime.datetime.strptime(data_str.strip(),"%Y-%m-%d %H:%M:%S.%f")
+                date_object = datetime.datetime.strptime(data_str.strip(), "%Y-%m-%d %H:%M:%S.%f")
                 yield date_object, line
+
 
 with open('data2.txt', 'a') as nwe_file:
     for i, (data_line, original_text) in enumerate(riad_file(), start=1):
@@ -24,7 +25,7 @@ with open('data2.txt', 'a') as nwe_file:
             result = data_line + datetime.timedelta(days=7)
             nwe_file.write(f"{data_line}: {result}\n")
         elif i == 2:
-            result = data_line.strftime('%A')  # День недели
+            result = data_line.strftime('%A')
             nwe_file.write(f"{data_line}: {result}\n")
         elif i == 3:
             result = (datetime.datetime.now() - data_line).days
