@@ -42,14 +42,3 @@ JOIN marks m on s.id = m.student_id
 JOIN lessons l on m.lesson_id = l.id 
 JOIN subjects su on l.subject_id = su.id
 WHERE s.id = 23020 
-
-			  
-
-
-
-
-
-
-
-
-
