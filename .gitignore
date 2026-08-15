@@ -1,8 +1,6 @@
-venv
-.idea
+homework/arsen_aylarov/less_13/data2.txt
 .DS_Store
-.pytest_cache
-.venv
-__pycache__
-credentials.py
-.envhomework/arsen_aylarov/less_13/data2.txt
+homework/.DS_Store
+homework/arsen_aylarov/.DS_Store
+.idea/
+venv/
