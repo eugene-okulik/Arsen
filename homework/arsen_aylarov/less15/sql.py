@@ -1,12 +1,11 @@
 import mysql.connector as mysql
 
-
 bd = mysql.connect(
-    user = 'st-onl',
-    passwd = 'AVNS_tegPDkI5BlB2lW5eASC',
-    host = 'db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
-    port = 25060,
-    database = 'st-onl'
+    user='st-onl',
+    passwd='AVNS_tegPDkI5BlB2lW5eASC',
+    host='db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
+    port=25060,
+    database='st-onl'
 )
 
 cursor = bd.cursor(dictionary=True)
@@ -30,7 +29,6 @@ cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('les_102', 23122
 cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (11, 76456, 23086)")
 cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (9, 76457, 23086)")
 bd.commit()
-
 
 cursor.execute("SELECT * FROM  marks WHERE  student_id  = 23086")
 print(cursor.fetchall())
