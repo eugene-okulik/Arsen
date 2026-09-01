@@ -9,31 +9,58 @@ bd = mysql.connect(
 )
 
 cursor = bd.cursor(dictionary=True)
-cursor.execute("INSERT INTO students (name, second_name, group_id) "
-               "VALUES ('Sergio', 'Ramos', NULL)")
-cursor.execute("INSERt INTO books  (title, taken_by_student_id) "
-               "VALUES ('football', 23086)")
-cursor.execute("INSERt INTO books  (title, taken_by_student_id) "
-               "VALUES ('spanish', 23086)")
+cursor.execute("INSERT INTO students (name, second_name) "
+               "VALUES ('Sergio', 'Ramos'")
+student_id = cursor.lastrowid
+qery = "INSERt INTO books  (title, taken_by_student_id) VALUES (%s, %s)"
+value = [("spanish", student_id),
+         ("english", student_id)]
+cursor.executemany(qery, value)
+
 cursor.execute("INSERT INTO `groups` (title, start_date, end_date) "
                "VALUES ('RM', 'Aug 2012', 'may 2020')")
-cursor.execute("UPDATE students  SET group_id = 23080 WHERE  id = 23086")
-cursor.execute("INSERT INTO subjects (title) VALUES ('fizra')")
-cursor.execute("INSERT INTO subjects (title) VALUES ('obj')")
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('less001', 23123)")
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('less002', 23123)")
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (7, 76454, 23086)")
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (8, 76455, 23086)")
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('les_101', 23122)")
-cursor.execute("INSERT INTO lessons (title, subject_id) VALUES ('les_102', 23122)")
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (11, 76456, 23086)")
-cursor.execute("INSERT INTO marks (value, lesson_id, student_id) VALUES (9, 76457, 23086)")
-bd.commit()
+goup_id = cursor.lastrowid
+group_query = "UPDATE students  SET group_id = %s WHERE  id = %s"
+cursor.execute(group_query, (goup_id, student_id))
 
-cursor.execute("SELECT * FROM  marks WHERE  student_id  = 23086")
-print(cursor.fetchall())
-cursor.execute("SELECT * FROM  books   WHERE  taken_by_student_id  = 23086")
-print(cursor.fetchall())
+subj = "INSERT INTO subjects (title) VALUES (%s)"
+subj_qery = ["футбол", "разминка"]
+cursor.executemany(subj, subj_qery)
+subj_id = cursor.lastrowid
+
+less1 = "INSERT INTO lessons (title, subject_id) VALUES ('less001', %s)"
+cursor.execute(less1, subj_id)
+less1_id = cursor.lastrowid
+
+less2 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
+cursor.execute(less2, subj_id)
+less2_id = cursor.lastrowid
+
+less3 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
+cursor.execute(less3, subj_id + 1)
+less3_id = cursor.lastrowid
+
+less4 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
+cursor.execute(less4, subj_id + 1)
+less4_id = cursor.lastrowid
+
+marks1 = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
+values_marks = [(4, less1_id, student_id),
+                (5, less1_id, student_id),
+                (3, less1_id, student_id),
+                (1, less1_id, student_id)]
+cursor.executemany(marks1, values_marks)
+marks_id = cursor.lastrowid
+
+sel_marks = "SELECT * FROM  marks WHERE  student_id  = %s"
+cursor.execute(sel_marks, student_id)
+marks_1 = cursor.fetchall()
+print(marks_1)
+
+books_1 = "SELECT * FROM  books   WHERE  taken_by_student_id  = %s"
+cursor.execute(books_1, student_id)
+books = cursor.fetchall()
+print(books)
 
 qery = """
 SELECT s.name, s.second_name, b.title, m.value, l.title, su.title AS subject_title
@@ -43,15 +70,15 @@ JOIN `groups` g on s.group_id = g.id
 JOIN marks m on s.id = m.student_id
 JOIN lessons l on m.lesson_id = l.id
 JOIN subjects su on l.subject_id = su.id
-WHERE s.id = 23086
+WHERE s.id = %s
 """
 
-cursor.execute(qery)
-print(cursor.fetchall())
+cursor.execute(qery, student_id)
 
-# data = cursor.fetchall()
-# print(data)
-# for student in data:
-#     print(student['name'])
+data = cursor.fetchall()
+print(data)
+for student in data:
+    print(student)
 
+bd.commit()
 bd.close()
