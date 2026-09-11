@@ -23,6 +23,7 @@ goup_id = cursor.lastrowid
 group_query = "UPDATE students  SET group_id = %s WHERE  id = %s"
 cursor.м(group_query, (goup_id, student_id))
 
+
 def sql_obj(object):
     for obj in object:
         subj = "INSERT INTO subjects (title) VALUES (%s)"
@@ -37,18 +38,7 @@ def lessens(less):
         subj_id = les
         cursor.execute(less1, subj_id)
         return cursor.lastrowid
-#
-# less2 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
-# # cursor.execute(less2, subj_id)
-# # less2_id = cursor.lastrowid
-#
-# less3 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
-# cursor.execute(less3, subj_id + 1)
-# less3_id = cursor.lastrowid
-#
-# less4 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
-# cursor.execute(less4, subj_id + 1)
-# less4_id = cursor.lastrowid
+
 
 marks1 = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
 values_marks = [(4, lessens, student_id),
