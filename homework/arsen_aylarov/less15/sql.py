@@ -21,34 +21,40 @@ cursor.execute("INSERT INTO `groups` (title, start_date, end_date) "
                "VALUES ('RM', 'Aug 2012', 'may 2020')")
 goup_id = cursor.lastrowid
 group_query = "UPDATE students  SET group_id = %s WHERE  id = %s"
-cursor.execute(group_query, (goup_id, student_id))
+cursor.м(group_query, (goup_id, student_id))
 
-subj = "INSERT INTO subjects (title) VALUES (%s)"
-subj_qery = ["футбол", "разминка"]
-cursor.executemany(subj, subj_qery)
-subj_id = cursor.lastrowid
+def sql_obj(object):
+    for obj in object:
+        subj = "INSERT INTO subjects (title) VALUES (%s)"
+        subj_qery = obj
+        cursor.execute(subj, subj_qery)
+        return cursor.lastrowid
 
-less1 = "INSERT INTO lessons (title, subject_id) VALUES ('less001', %s)"
-cursor.execute(less1, subj_id)
-less1_id = cursor.lastrowid
 
-less2 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
-cursor.execute(less2, subj_id)
-less2_id = cursor.lastrowid
-
-less3 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
-cursor.execute(less3, subj_id + 1)
-less3_id = cursor.lastrowid
-
-less4 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
-cursor.execute(less4, subj_id + 1)
-less4_id = cursor.lastrowid
+def lessens(less):
+    for les in less:
+        less1 = "INSERT INTO lessons (title, subject_id) VALUES ('less001', %s)"
+        subj_id = les
+        cursor.execute(less1, subj_id)
+        return cursor.lastrowid
+#
+# less2 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
+# # cursor.execute(less2, subj_id)
+# # less2_id = cursor.lastrowid
+#
+# less3 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
+# cursor.execute(less3, subj_id + 1)
+# less3_id = cursor.lastrowid
+#
+# less4 = "INSERT INTO lessons (title, subject_id) VALUES ('less002', %s)"
+# cursor.execute(less4, subj_id + 1)
+# less4_id = cursor.lastrowid
 
 marks1 = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values_marks = [(4, less1_id, student_id),
-                (5, less1_id, student_id),
-                (3, less1_id, student_id),
-                (1, less1_id, student_id)]
+values_marks = [(4, lessens, student_id),
+                (5, lessens, student_id),
+                (3, lessens, student_id),
+                (1, lessens, student_id)]
 cursor.executemany(marks1, values_marks)
 marks_id = cursor.lastrowid
 
