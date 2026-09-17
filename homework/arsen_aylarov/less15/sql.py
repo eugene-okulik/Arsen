@@ -1,6 +1,6 @@
 import mysql.connector as mysql
 
-bd = mysql.connect(
+db = mysql.connect(
     user='st-onl',
     passwd='AVNS_tegPDkI5BlB2lW5eASC',
     host='db-mysql-fra1-09136-do-user-7651996-0.b.db.ondigitalocean.com',
@@ -8,45 +8,61 @@ bd = mysql.connect(
     database='st-onl'
 )
 
-cursor = bd.cursor(dictionary=True)
-cursor.execute("INSERT INTO students (name, second_name) "
-               "VALUES ('Sergio', 'Ramos'")
+cursor = db.cursor(dictionary=True)
+
+cursor.execute(
+      "INSERT INTO students (name, second_name) VALUES (%s, %s)",
+      ('Sergio', 'Ramos'))
+
 student_id = cursor.lastrowid
-qery = "INSERt INTO books  (title, taken_by_student_id) VALUES (%s, %s)"
-value = [("spanish", student_id),
+print(f'Студент ID: {student_id}')
+
+books = [("spanish", student_id),
          ("english", student_id)]
-cursor.executemany(qery, value)
+add_books  = "INSERt INTO books  (title, taken_by_student_id) VALUES (%s, %s)"
+cursor.executemany(add_books, books)
+print(f'Студент ID: {student_id}')
 
 cursor.execute("INSERT INTO `groups` (title, start_date, end_date) "
                "VALUES ('RM', 'Aug 2012', 'may 2020')")
 goup_id = cursor.lastrowid
+print(f'ID группы: {goup_id}')
+
 group_query = "UPDATE students  SET group_id = %s WHERE  id = %s"
-cursor.м(group_query, (goup_id, student_id))
+cursor.execute(group_query, (goup_id, student_id))
 
 
-def sql_obj(object):
-    for obj in object:
-        subj = "INSERT INTO subjects (title) VALUES (%s)"
-        subj_qery = obj
-        cursor.execute(subj, subj_qery)
-        return cursor.lastrowid
+def add_subject(subject_name, cursor):
+    insert_subj = "INSERT INTO subjects (title) VALUES (%s)"
+    cursor.execute(insert_subj, (subject_name))
+    return cursor.lastrowid
+
+subject1 = add_subject('france', cursor)
+subject2 = add_subject('spain', cursor)
 
 
-def lessens(less):
-    for les in less:
-        less1 = "INSERT INTO lessons (title, subject_id) VALUES ('less001', %s)"
-        subj_id = les
-        cursor.execute(less1, subj_id)
-        return cursor.lastrowid
+
+def add_lessens(title, subject_id, cursor):
+
+    less1 = "INSERT INTO lessons (title, subject_id) VALUES ('less001', %s)", (title, subject_id)
+    subj_id = cursor.lastrowid
+    cursor.execute(less1, subj_id)
+    return subj_id
+
+lesson_id_1 = add_lessens('Geography lesson 1', subject1, cursor)
+lesson_id_2 = add_lessens('Geography lesson 2', subject1, cursor)
+lesson_id_3 = add_lessens('World History lesson 1', subject2, cursor)
+lesson_id_4 = add_lessens('World History lesson 2', subject2, cursor)
 
 
 marks1 = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
-values_marks = [(4, lessens, student_id),
-                (5, lessens, student_id),
-                (3, lessens, student_id),
-                (1, lessens, student_id)]
+values_marks = [(4, lesson_id_1, student_id),
+                (5, lesson_id_2, student_id),
+                (3, lesson_id_3, student_id),
+                (1, lesson_id_4, student_id)]
 cursor.executemany(marks1, values_marks)
 marks_id = cursor.lastrowid
+
 
 sel_marks = "SELECT * FROM  marks WHERE  student_id  = %s"
 cursor.execute(sel_marks, student_id)
@@ -76,5 +92,5 @@ print(data)
 for student in data:
     print(student)
 
-bd.commit()
-bd.close()
+db.commit()
+db.close()
