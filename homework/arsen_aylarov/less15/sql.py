@@ -11,15 +11,15 @@ db = mysql.connect(
 cursor = db.cursor(dictionary=True)
 
 cursor.execute(
-      "INSERT INTO students (name, second_name) VALUES (%s, %s)",
-      ('Sergio', 'Ramos'))
+    "INSERT INTO students (name, second_name) VALUES (%s, %s)",
+    ('Sergio', 'Ramos'))
 
 student_id = cursor.lastrowid
 print(f'Студент ID: {student_id}')
 
 books = [("spanish", student_id),
          ("english", student_id)]
-add_books  = "INSERt INTO books  (title, taken_by_student_id) VALUES (%s, %s)"
+add_books = "INSERt INTO books  (title, taken_by_student_id) VALUES (%s, %s)"
 cursor.executemany(add_books, books)
 print(f'Студент ID: {student_id}')
 
@@ -37,23 +37,22 @@ def add_subject(subject_name, cursor):
     cursor.execute(insert_subj, (subject_name))
     return cursor.lastrowid
 
+
 subject1 = add_subject('france', cursor)
 subject2 = add_subject('spain', cursor)
 
 
-
 def add_lessens(title, subject_id, cursor):
-
     less1 = "INSERT INTO lessons (title, subject_id) VALUES ('less001', %s)", (title, subject_id)
     subj_id = cursor.lastrowid
     cursor.execute(less1, subj_id)
     return subj_id
 
+
 lesson_id_1 = add_lessens('Geography lesson 1', subject1, cursor)
 lesson_id_2 = add_lessens('Geography lesson 2', subject1, cursor)
 lesson_id_3 = add_lessens('World History lesson 1', subject2, cursor)
 lesson_id_4 = add_lessens('World History lesson 2', subject2, cursor)
-
 
 marks1 = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
 values_marks = [(4, lesson_id_1, student_id),
@@ -62,7 +61,6 @@ values_marks = [(4, lesson_id_1, student_id),
                 (1, lesson_id_4, student_id)]
 cursor.executemany(marks1, values_marks)
 marks_id = cursor.lastrowid
-
 
 sel_marks = "SELECT * FROM  marks WHERE  student_id  = %s"
 cursor.execute(sel_marks, student_id)
