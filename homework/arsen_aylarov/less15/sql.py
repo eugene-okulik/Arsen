@@ -48,7 +48,6 @@ def add_lessens(title, subject_id, cursor):
     return cursor.lastrowid
 
 
-
 lesson_id_1 = add_lessens('Geography lesson 1', subject1, cursor)
 lesson_id_2 = add_lessens('Geography lesson 2', subject1, cursor)
 lesson_id_3 = add_lessens('World History lesson 1', subject2, cursor)
