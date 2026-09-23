@@ -34,7 +34,7 @@ cursor.execute(group_query, (goup_id, student_id))
 
 def add_subject(subject_name, cursor):
     insert_subj = "INSERT INTO subjects (title) VALUES (%s)"
-    cursor.execute(insert_subj, (subject_name,))
+    cursor.execute(insert_subj, subject_name)
     return cursor.lastrowid
 
 
@@ -43,7 +43,7 @@ subject2 = add_subject('spain', cursor)
 
 
 def add_lessens(title, subject_id, cursor):
-    less1 = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)", (title, subject_id)
+    less1 = "INSERT INTO lessons (title, subject_id) VALUES (%s, %s)"
     cursor.execute(less1, (title, subject_id))
     return cursor.lastrowid
 
